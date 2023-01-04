@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电子工牌</title>
+  <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .bg {
+      width: 100%;
+      height: 700px;
+      background-image: url("1.png");
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: center top;
+      background-attachment: fixed;
+    }
+
+    .riqi {
+      font-size: 14px;
+      font-family: "./方正兰亭中粗黑繁体.TTF";
+      color: #8A8A8A;
+      font-weight: 500;
+      letter-spacing: 2px;
+      position: fixed;
+      top: 70.5%;
+      left: 36%;
+    }
+
+    .time {
+      position: fixed;
+      top: 74.5%;
+      left: 29%;
+      font-size: 20px;
+      font-family: "./方正兰亭中粗黑繁体.TTF";
+      font-weight: 600;
+      height: 30px;
+      overflow: hidden;
+      font-size: 23px;
+    }
+
+    ul {
+      width: 36px;
+      position: absolute;
+      transition: all .75s;
+    }
+
+    .dian {
+      width: 36px;
+      position: absolute;
+      color: #150000;
+      top: 36px;
+    }
+
+    nav {
+      width: 290px;
+      position: relative;
+      top: -31px;
+      height: 108px;
+      overflow: hidden;
+    }
+
+    li {
+      height: 36px;
+      list-style: none;
+    }
+
+    li.active {
+      color: rgb(0, 0, 0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="riqi">
+      2023-01-02
+    </div>
+
+    <div class="time">
+      <nav>
+        <ul style="left: 0;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+        <ul style="left: 20px;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>8</li>
+          <li>9</li>
+        </ul>
+        <div style="left: 40px;" class="dian">
+          <p>:</p>
+        </div>
+        <ul style="left: 60px;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+        <ul style="left: 80px;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>8</li>
+          <li>9</li>
+        </ul>
+        <div style="left: 100px;" class="dian">
+          <p>:</p>
+        </div>
+        <ul style="left: 120px;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+        <ul style="left: 140px;">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>8</li>
+          <li>9</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+  <script>
+    time();
+    setInterval(time, 1000)
+
+    function time () {
+      var Nowtime = new Date();
+      var h = Nowtime.getHours();
+      if (h < 10) h = '0' + h;
+      var m = Nowtime.getMinutes();
+      if (m < 10) m = '0' + m;
+      var s = Nowtime.getSeconds();
+      if (s < 10) s = '0' + s;
+      //获得字符串时间
+      var str = '' + h + m + s;
+      var ul = document.getElementsByTagName('ul');
+      var li = document.getElementsByTagName('li');
+      //灰掉所有li
+      for (var i = 0; i < li.length; i++) {
+        li[i].className = ''
+      }
+      //字符串时间与每个ul关联
+      for (var i = 0; i < ul.length; i++) {
+        //
+        ul[i].style.top = (parseInt(str[i]) - 1) * (-36) + 'px';
+        //当前li样式激活
+        ul[i].getElementsByTagName('li')[str[i]].className = 'active'
+
+      }
+      // console.log(str)
+    }
+  </script>
+</body>
+
+</html>
